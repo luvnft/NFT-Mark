@@ -1,12 +1,11 @@
 import client from "@/lib/client";
-/** Replace the values below with the addresses of your smart contracts. */
-// 1. Set up the network your smart contracts are deployed to.
-// First, import the chain from the package, then set the NETWORK variable to the chain.
 import { defineChain, getContract } from "thirdweb";
 
+// 1. Set up the network your smart contracts are deployed to.
+// Define the Base network chain and set the NETWORK variable to the chain.
 export const NETWORK = defineChain({
-  id: 2442,
-  name: "Polygon zkEVM Cardona Testnet",
+  id: 8453, // Base Chain ID (replace with the actual chain ID for Base if necessary)
+  name: "Base", // Base Network name
   nativeCurrency: {
     name: "ETH",
     symbol: "ETH",
@@ -14,35 +13,34 @@ export const NETWORK = defineChain({
   },
   rpcUrls: {
     default: {
-      http: ["https://rpc.cardona.zkevm-rpc.com"],
+      http: ["https://base-rpc.network"], // Base RPC URL (replace with the correct RPC URL if necessary)
     },
   },
   blockExplorers: {
     default: {
-      name: "PolygonScan",
-      url: "https://cardona-zkevm.polygonscan.com",
+      name: "BaseScan", // Base's block explorer (adjust if necessary)
+      url: "https://basescan.org", // Base's block explorer URL
     },
   },
-  testnet: true,
+  testnet: true, // Set to false if deploying on Mainnet
 });
 
 // 2. The address of the marketplace V3 smart contract.
-// Deploy your own: https://thirdweb.com/thirdweb.eth/MarketplaceV3
-const MARKETPLACE_ADDRESS = "";
+// Replace with your actual Marketplace contract address on Base network.
+const MARKETPLACE_ADDRESS = "0xcc85af4E1EFB3F8A378D20016020124917206E4b"; // Example address
 export const MARKETPLACE = getContract({
   address: MARKETPLACE_ADDRESS,
   client,
   chain: NETWORK,
 });
 
-// 3. The address of your NFT collection smart contract.
-const NFT_COLLECTION_ADDRESS = "";
+// 3. The address of your NFT collection smart contract on Base.
+const NFT_COLLECTION_ADDRESS = "0x8F3b48431FA3d9b92ff7157E890105F9B5f96089"; // Replace with your NFT collection contract address
 export const NFT_COLLECTION = getContract({
   address: NFT_COLLECTION_ADDRESS,
   client,
   chain: NETWORK,
 });
 
-// (Optional) Set up the URL of where users can view transactions on
-// For example, below, we use Mumbai.polygonscan to view transactions on the Mumbai testnet.
-export const ETHERSCAN_URL = "https://sepolia.etherscan.io";
+// (Optional) Set up the URL of where users can view transactions on Base network.
+export const ETHERSCAN_URL = "https://basescan.org"; // View transactions on BaseScan
